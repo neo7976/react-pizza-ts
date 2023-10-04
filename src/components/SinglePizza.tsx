@@ -1,7 +1,8 @@
 import Pizza from "../modal/Pizza";
-import {VscEdit} from  "react-icons/vsc";
-import {AiOutlineDelete} from  "react-icons/ai";
-import {FC} from "react";
+import {VscEdit} from "react-icons/vsc";
+import {AiOutlineDelete} from "react-icons/ai";
+import React, {FC, useState} from "react";
+import EditPizzaForm from "./EditPizzaForm";
 
 interface SinglePizzasProps {
     pizza: Pizza
@@ -9,6 +10,9 @@ interface SinglePizzasProps {
 
 
 const SinglePizza: FC<SinglePizzasProps> = ({pizza}) => {
+    const [edit, setEdit] = useState<boolean>(false)
+
+
     return (
         <div className="pizza">
             <img src={`/images/${pizza.img}`} alt={pizza.title}/>
@@ -18,6 +22,8 @@ const SinglePizza: FC<SinglePizzasProps> = ({pizza}) => {
                 <VscEdit/>
                 <AiOutlineDelete/>
             </div>
+            {edit ? <EditPizzaForm data{pizza}/> : null}
+
         </div>
     );
 }
