@@ -79,7 +79,9 @@ const bmw: BMW = {
 const App: FC = () => {
     return (
         <div className="App">
-            New App!
+            <div className="wrap">
+                <span className="heading">Наша пиццерия</span>
+            </div>
         </div>
     );
 }
