@@ -1,5 +1,7 @@
 import React, {FC} from 'react';
 import './App.css';
+import AddPizzaForm from "./components/AddPizzaForm";
+
 
 /*//Тип для создания объекта
 type Order = {
@@ -81,6 +83,7 @@ const App: FC = () => {
         <div className="App">
             <div className="wrap">
                 <span className="heading">Наша пиццерия</span>
+                <AddPizzaForm/>
             </div>
         </div>
     );
