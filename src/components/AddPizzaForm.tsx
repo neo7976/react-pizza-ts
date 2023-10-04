@@ -1,15 +1,21 @@
 import React, {ChangeEvent, FC, FormEvent, useState} from "react";
 import './styles.css';
+import Pizza from "../modal/Pizza";
 
 const initState = {
     title: '',
-    price: undefined,
-    img: ''
+    price: '',
+    img: 'pizza-1.jpg'
 }
 
-const AddPizzaForm: FC = () => {
+interface AddPizzaFormProps {
+    addPizza: (newPizza: Pizza) => void
+}
+
+
+const AddPizzaForm: FC<AddPizzaFormProps> = ({addPizza}) => {
     const [newPizza, setNewPizza] =
-        useState<{ title: string, price: number | undefined, img: string }>(initState);
+        useState<{ title: string, price: string, img: string }>(initState);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
@@ -22,8 +28,19 @@ const AddPizzaForm: FC = () => {
         });
     }
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log(`handle change`, e.target);
+        e.preventDefault();
+
+        const {title, price, img} = newPizza;
+
+        if (title && price && img) {
+            addPizza({
+                title,
+                img,
+                price: Number(price),
+                id: Date.now()
+            });
+            setNewPizza(initState);
+        }
     }
 
     console.log("Новая пицца", newPizza);

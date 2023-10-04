@@ -1,6 +1,8 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import './App.css';
 import AddPizzaForm from "./components/AddPizzaForm";
+import Pizza from "./modal/Pizza";
+import DisplayPizza from "./components/DisplayPizza";
 
 
 /*//Тип для создания объекта
@@ -79,11 +81,20 @@ const bmw: BMW = {
 }*/
 
 const App: FC = () => {
+    const [pizzaList, setPizzaList] = useState<Pizza[]>([]);
+
+    const addPizza = (newPizza: Pizza) => {
+        setPizzaList([...pizzaList, newPizza]);
+    }
+
+    console.log("Список пицц >>>> ", pizzaList);
+
     return (
         <div className="App">
             <div className="wrap">
                 <span className="heading">Наша пиццерия</span>
-                <AddPizzaForm/>
+                <AddPizzaForm addPizza={addPizza}/>
+                <DisplayPizza pizzaList={pizzaList}/>
             </div>
         </div>
     );
