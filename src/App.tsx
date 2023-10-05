@@ -92,6 +92,10 @@ const App: FC = () => {
         setPizzaList(pizzaList.map((pizza) =>
             (pizza.id === newPizza.id ? newPizza : pizza)));
     }
+    const removePizza = (id: number) => {
+        const newPizzaList = pizzaList.filter(pizza => (pizza.id !== id));
+        setPizzaList(newPizzaList);
+    }
 
     console.log("Список пицц >>>> ", pizzaList);
 
@@ -103,6 +107,7 @@ const App: FC = () => {
                 <DisplayPizza
                     pizzaList={pizzaList}
                     updatePizza={updatePizza}
+                    removePizza={removePizza}
                 />
             </div>
         </div>

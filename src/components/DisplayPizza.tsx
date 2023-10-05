@@ -4,17 +4,19 @@ import SinglePizza from "./SinglePizza";
 
 interface DisplayPizzasProps {
     pizzaList: Pizza[];
-    updatePizza: (newPizza:Pizza) => void;
+    updatePizza: (newPizza: Pizza) => void;
+    removePizza: (id: number) => void;
 }
 
 
-const DisplayPizza: FC<DisplayPizzasProps> = ({pizzaList, updatePizza}) => {
+const DisplayPizza: FC<DisplayPizzasProps> = ({pizzaList, updatePizza, removePizza}) => {
     return (
         <div className="container">
             {pizzaList.map((pizza) => {
                 return <SinglePizza
                     key={pizza.id}
                     updatePizza={updatePizza}
+                    removePizza={removePizza}
                     pizza={pizza}/>;
             })}
         </div>

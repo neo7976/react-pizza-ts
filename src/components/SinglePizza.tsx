@@ -7,13 +7,18 @@ import EditPizzaForm from "./EditPizzaForm";
 interface SinglePizzasProps {
     pizza: Pizza;
     updatePizza: (newPizza:Pizza) => void;
+    removePizza: (id: number) => void;
 }
 
 
-const SinglePizza: FC<SinglePizzasProps> = ({pizza, updatePizza}) => {
+const SinglePizza: FC<SinglePizzasProps> = ({pizza, updatePizza,removePizza}) => {
     const [edit, setEdit] = useState<boolean>(false)
     const handleToggleEdit = () => {
         setEdit(!edit);
+    }
+
+    const handleToggleRemove = () => {
+       removePizza(pizza.id);
     }
 
     return (
@@ -23,7 +28,7 @@ const SinglePizza: FC<SinglePizzasProps> = ({pizza, updatePizza}) => {
             <span>{pizza.price} ₽</span>
             <div className="pizza-controls">
                 <VscEdit onClick={handleToggleEdit}/>
-                <AiOutlineDelete/>
+                <AiOutlineDelete onClick={handleToggleRemove}/>
             </div>
             {edit
                 ?
