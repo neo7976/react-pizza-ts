@@ -3,6 +3,7 @@ import './App.css';
 import AddPizzaForm from "./components/AddPizzaForm";
 import Pizza from "./modal/Pizza";
 import DisplayPizza from "./components/DisplayPizza";
+import pizza from "./modal/Pizza";
 
 
 /*//Тип для создания объекта
@@ -87,6 +88,11 @@ const App: FC = () => {
         setPizzaList([...pizzaList, newPizza]);
     }
 
+    const updatePizza = (newPizza: Pizza) => {
+        setPizzaList(pizzaList.map((pizza) =>
+            (pizza.id === newPizza.id ? newPizza : pizza)));
+    }
+
     console.log("Список пицц >>>> ", pizzaList);
 
     return (
@@ -94,7 +100,10 @@ const App: FC = () => {
             <div className="wrap">
                 <span className="heading">Наша пиццерия</span>
                 <AddPizzaForm addPizza={addPizza}/>
-                <DisplayPizza pizzaList={pizzaList}/>
+                <DisplayPizza
+                    pizzaList={pizzaList}
+                    updatePizza={updatePizza}
+                />
             </div>
         </div>
     );
